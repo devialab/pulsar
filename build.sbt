@@ -14,4 +14,5 @@ libraryDependencies ++= Seq(
   ,"ch.qos.logback" % "logback-classic" % "1.1.2"
   ,"com.typesafe.akka" %% "akka-actor" % "2.3.7"
   ,"org.zeromq" % "zeromq-scala-binding_2.11.2" % "0.1.0-SNAPSHOT" % "provided"
-  , "com.mdialog" %% "scala-zeromq" % "1.1.1")
+  , "com.mdialog" %% "scala-zeromq" % "1.1.1"
+  , "org.scalatest" %% "scalatest" % "2.2.1" % "test")
