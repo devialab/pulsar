@@ -9,9 +9,12 @@ resolvers ++= Seq(
   ,"Sonatype (releases)" at "https://oss.sonatype.org/content/repositories/releases/"
   ,"mDialog releases" at "http://mdialog.github.io/releases/")
 
+val AkkaVersion = "2.3.7"
+
 libraryDependencies ++= Seq(
-  "org.clapper" % "grizzled-slf4j_2.11" % "1.0.2"
-  ,"ch.qos.logback" % "logback-classic" % "1.1.2"
-  ,"com.typesafe.akka" %% "akka-actor" % "2.3.7"
-  , "com.mdialog" %% "scala-zeromq" % "1.1.1"
-  , "org.scalatest" %% "scalatest" % "2.2.1" % "test")
+  "com.typesafe.akka" %% "akka-actor" % AkkaVersion,
+  "com.typesafe.akka"   %%  "akka-testkit"  % AkkaVersion  % "test",
+  "org.clapper" % "grizzled-slf4j_2.11" % "1.0.2",
+  "ch.qos.logback" % "logback-classic" % "1.1.2",
+  "com.mdialog" %% "scala-zeromq" % "1.1.1",
+  "org.scalatest" %% "scalatest" % "2.2.1" % "test")
