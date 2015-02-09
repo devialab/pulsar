@@ -3,7 +3,7 @@ package pulsar.actor
 import akka.actor.{ActorRef, Actor}
 import akka.util.ByteString
 import grizzled.slf4j.Logging
-import pulsar.action.Dispatch
+import pulsar.action.{Register, Dispatch}
 import zeromq.Message
 
 /**
@@ -11,13 +11,14 @@ import zeromq.Message
  */
 class Dispatcher extends Actor with Logging{
 
-  var sockets = Map.empty[String, ActorRef]
+  var listeners = Map.empty[String, ActorRef]
 
   def receive = {
-    case Dispatch(task) => Option(sockets(task.`type`)) match {
-      case Some(socket) => socket ! Message(ByteString(task.`type`), ByteString(), task.payload)
+    case Register(t, listener) => listeners += (t -> listener)
+    case Dispatch(task) => Option(listeners(task.`type`)) match {
+      case Some(listener) => listener ! task
       //TODO: Here we lost the dispatching of the task. Maybe we should try a bit latter?
-      case None => error(s"Socket does not exists for task type ${task.`type`}")
+      case None => error(s"Listener does not exists for task type ${task.`type`}")
     }
   }
 
