@@ -6,7 +6,7 @@ import pulsar.model.Task
 /**
  * @author Alexander De Leon <me@alexdeleon.name>
  */
-class Scheduler(dispatcher: ActorRef) extends Actor{
+class Scheduler(dispatcher: ActorRef) extends Actor {
 
   var scheduledTasks = Map.empty[String, (Task, Cancellable)]
   val scheduler = context.system.scheduler
