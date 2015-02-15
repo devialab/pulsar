@@ -8,9 +8,10 @@ import pulsar.model.Task
  */
 class Scheduler(dispatcher: ActorRef) extends Actor {
 
+  implicit val dispatcherContext = context.dispatcher
+
   var scheduledTasks = Map.empty[String, (Task, Cancellable)]
   val scheduler = context.system.scheduler
-  implicit val ec = context.dispatcher
 
   def receive = {
     case Schedule(task, delay, period) => {
