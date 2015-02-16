@@ -1,7 +1,7 @@
 package pulsar.actor
 
-import akka.actor.{ActorRef, Cancellable, ActorSystem, Actor}
-import pulsar.action.{Kill, Reschedule, Schedule, Dispatch}
+import akka.actor._
+import pulsar.action.{Dispatch, Kill, Reschedule, Schedule}
 import pulsar.model.Task
 /**
  * @author Alexander De Leon <me@alexdeleon.name>
@@ -31,4 +31,8 @@ class Scheduler(dispatcher: ActorRef) extends Actor {
   def cancelTask(id: String) = Option(scheduledTasks(id)).map(_._2.cancel())
 
   def saveScheduledTask(task: Task, cancellable: Cancellable) = scheduledTasks += (task.id -> (task, cancellable))
+}
+
+object Scheduler {
+  def props(dispatcher: ActorRef) = Props(new Scheduler(dispatcher))
 }

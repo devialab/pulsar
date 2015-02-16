@@ -1,9 +1,8 @@
 package pulsar.actor
 
-import akka.actor.{ActorRef, Actor}
-import akka.util.ByteString
+import akka.actor.{Actor, ActorRef, Props}
 import grizzled.slf4j.Logging
-import pulsar.action.{Register, Dispatch}
+import pulsar.action.{Dispatch, Register}
 
 /**
  * @author Alexander De Leon <me@alexdeleon.name>
@@ -20,5 +19,8 @@ class Dispatcher extends Actor with Logging {
       case None => error(s"Listener does not exists for task type ${task.`type`}")
     }
   }
+}
 
+object Dispatcher {
+  def props = Props(new Dispatcher)
 }

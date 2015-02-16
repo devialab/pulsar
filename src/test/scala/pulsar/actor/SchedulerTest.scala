@@ -1,11 +1,12 @@
 package pulsar.actor
 
-import akka.actor.{ActorSystem, Actor}
+import akka.actor.ActorSystem
 import akka.testkit._
 import akka.util.ByteString
-import org.scalatest.{WordSpecLike, BeforeAndAfter, Matchers, FlatSpec}
-import pulsar.action.{Kill, Reschedule, Schedule, Dispatch}
+import org.scalatest.{BeforeAndAfter, Matchers, WordSpecLike}
+import pulsar.action.{Dispatch, Kill, Reschedule, Schedule}
 import pulsar.model.Task
+
 import scala.concurrent.duration._
 
 /**
