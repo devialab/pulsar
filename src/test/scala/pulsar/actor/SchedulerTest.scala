@@ -57,5 +57,4 @@ class SchedulerTest extends TestKit(ActorSystem.create("SchedulerTest"))
       dispatcher.expectNoMsg(1.2 seconds)
     }
   }
-
 }

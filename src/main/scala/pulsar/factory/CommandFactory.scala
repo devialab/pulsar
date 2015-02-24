@@ -1,8 +1,19 @@
 package pulsar.factory
 
-/**
- * Created by alberto on 2/24/15.
- */
-object CommandFactory {
+import pulsar.command.{Command, RegisterCommand}
+import zeromq.Message
 
-}
+  /**
+   * @author Alberto J. Rubio
+   */
+
+
+  object CommandFactory {
+    def apply(message: Message): Command = {
+      val id = message(0)
+      val content = new String(message(1).toArray).toUpperCase.split(" ")
+      content(0) match {
+        case "REG" => RegisterCommand(id, content(1))
+      }
+    }
+  }
