@@ -1,7 +1,7 @@
 package pulsar
 
 import akka.actor.ActorSystem
-import pulsar.actor.EntryPoint
+import pulsar.actor.{Router}
 
 /**
  * @author Alexander De Leon <me@alexdeleon.name>
@@ -10,6 +10,6 @@ object Pulsar extends App {
 
   val system = ActorSystem("pulsar")
 
-  system.actorOf(EntryPoint.props)
+  system.actorOf(Router.props)
 
 }

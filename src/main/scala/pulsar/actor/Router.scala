@@ -9,7 +9,7 @@ import zeromq._
 /**
  * @author Alexander De Leon <me@alexdeleon.name>
  */
-class EntryPoint extends Actor {
+class Router extends Actor {
 
   val dispatcher = context.system.actorOf(Dispatcher.props)
   val scheduler = context.system.actorOf(Scheduler.props(dispatcher))
@@ -23,6 +23,6 @@ class EntryPoint extends Actor {
   }
 }
 
-object EntryPoint {
-  def props = Props(new EntryPoint)
+object Router {
+  def props = Props(new Router)
 }
