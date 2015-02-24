@@ -5,4 +5,4 @@ import akka.util.ByteString
 /**
  * @author Alberto J. Rubio
  */
-case class RegisterSocket(socketId: ByteString, `type`: String) extends Command
+case class RegisterCommand(socketId: ByteString, `type`: String) extends Command
