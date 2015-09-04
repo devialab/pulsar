@@ -6,14 +6,12 @@ import zeromq.Message
   /**
    * @author Alberto J. Rubio
    */
-
-
-  object CommandFactory {
+  object CommandFactory  {
     def apply(message: Message): Command = {
       val id = message(0)
       val content = new String(message(1).toArray).toUpperCase.split(" ")
       content(0) match {
-        case "REG" => RegisterCommand(id, content(1))
+        case cmd: String if cmd.equals("REG") => RegisterCommand(id, content(1))
       }
     }
   }

@@ -6,7 +6,7 @@ import pulsar.model.Task
 /**
  * @author Alexander De Leon <me@alexdeleon.name>
  */
-class Scheduler(dispatcher: ActorRef) extends Actor {
+class Scheduler(dispatcher: ActorRef) extends Actor with ActorLogging {
 
   implicit val dispatcherContext = context.dispatcher
 

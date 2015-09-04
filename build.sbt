@@ -10,7 +10,7 @@ resolvers ++= Seq(
   "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
   ,"Sonatype (releases)" at "https://oss.sonatype.org/content/repositories/releases/"
   ,"mDialog releases" at "http://mdialog.github.io/releases/"
-  , Resolver.url("alexdeleon-repo", url("http://maven.alexdeleon.name/snapshot/"))(Resolver.ivyStylePatterns))
+  ,"Devialab Repository" at "http://artifacts.devialab.com/artifactory/libs")
 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor" % AkkaVersion,
@@ -19,4 +19,18 @@ libraryDependencies ++= Seq(
   "ch.qos.logback" % "logback-classic" % "1.1.2",
   "com.mdialog" %% "scala-zeromq" % "1.1.1",
   "org.scalatest" %% "scalatest" % "2.2.1" % "test",
-  "org.zeromq" % "zeromq-scala-binding_2.11.2" % "0.1.0-SNAPSHOT")
+  "org.zeromq" % "jeromq" % "0.3.5")
+
+
+lazy val `pulsar-client` = project
+
+//publish settings
+publishMavenStyle := true
+
+publishTo := {
+  val artifactory = "http://artifacts.devialab.com/artifactory/"
+  if (isSnapshot.value)
+    Some("snapshots" at artifactory + "devialab-snapshot;build.timestamp=" + new java.util.Date().getTime)
+  else
+    Some("releases"  at artifactory + "devialab-release")
+}
